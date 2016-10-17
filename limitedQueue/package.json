@@ -1,0 +1,22 @@
+{
+  "name": "limitedqueue",
+  "version": "0.0.7",
+  "description": "A queue which limits space and storage size",
+  "main": "limitedQueue.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "keywords": [
+    "Queue"
+  ],
+  "author": "Julian Knodt <julianknodt@gmail.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "hash-it": "^2.0.0",
+    "linkedlist": "^1.0.1",
+    "sizeof": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.1.2"
+  }
+}

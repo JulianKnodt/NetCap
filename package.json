@@ -1,0 +1,46 @@
+{
+  "name": "safetynet",
+  "version": "0.0.1",
+  "description": "Packet capturing service",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha */spec.js",
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js",
+    "stop": "",
+    "electron": "sudo node_modules/.bin/elctron ."
+  },
+  "keywords": [
+    "pcap"
+  ],
+  "author": "julianknodt@gmail.com",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "babel-preset-react": "^6.16.0",
+    "body-parser": "^1.15.2",
+    "bufferutil": "^1.2.1",
+    "electron": "^1.4.3",
+    "express": "^4.14.0",
+    "grunt": "^1.0.1",
+    "grunt-shell": "^2.0.0",
+    "limitedqueue": "0.0.5",
+    "morgan": "^1.7.0",
+    "nexe": "^1.1.2",
+    "node-redis": "^0.1.7",
+    "open": "0.0.5",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-router": "^2.8.1",
+    "sizeof": "^1.0.0",
+    "utf-8-validate": "^1.2.1",
+    "webpack": "^1.13.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2",
+    "nodemon": "^1.11.0"
+  }
+}
