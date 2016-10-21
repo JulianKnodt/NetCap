@@ -1,25 +1,12 @@
 import React, { PropTypes } from 'react';
+import Navbar from '../navbar/Navbar.jsx'
 
-class AppContainer extends React.Component {
-  componentWillMount() {
-    fetch('/data', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-    .then(data => data.text())
-    .then((resp) => {
-      console.log(resp);
-    });
-  }
+class App extends React.Component {
   render() {
     return (
       <div>
+        <Navbar />
         <div>
-          {/*<NavBar />*/}
-          <Chime />
           {
           React.cloneElement(this.props.children)
           }
@@ -29,3 +16,5 @@ class AppContainer extends React.Component {
     );
   }
 }
+
+export default App;
