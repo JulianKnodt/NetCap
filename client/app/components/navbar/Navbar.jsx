@@ -25,10 +25,12 @@ const NavbarContainer = props => {
           <button className="btn btn-default" onClick={props.updateData}>Update</button>
         </form>
         <ul className="nav navbar-nav">
-          <li className="active"><a>About<span className="sr-only">(current)</span></a></li>
-          <li><a>Verified</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/verified">Verified</Link></li>
+          <li><Link to="/about">About<span className="sr-only">(current)</span></Link></li>
         </ul>
         <div className="navbar-header navbar-right">
+          {/*https://assets.materialup.com/uploads/48c40118-e207-4289-a125-b5c0ebfdf60e/thumbnail.png*/}
           <img className="navbar-brand" alt="Safety Net" src="https://d30y9cdsu7xlg0.cloudfront.net/png/14589-200.png" style={{width:50, height:'auto', padding:0, margin:0}}/>
         </div>
       </div>

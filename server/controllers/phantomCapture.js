@@ -8,7 +8,6 @@ phantom.create([
   '--web-security=false'
 ])
 .then(phantomInstance => {
-  console.log('(worker): phantom is ready to go!');
   phantomInst = phantomInstance;
 })
 // .then(page => {

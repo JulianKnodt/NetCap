@@ -6,10 +6,10 @@ const storePath = path.resolve(__dirname + '/../../savedData/data.txt');
 const screenCap = require('./phantomCapture');
 
 var memStorage = new q.LimitedQueue(100);
-var verified = new q.LimitedQueue(100);
+var verified = new q.LimitedQueue(25);
 var toScreenshot = new q.AutoQueueBalancer((item, done) => {
-  screenCap(item.url,(img) => {
-    verified.enqueue({base64:img, time:item.time});
+  screenCap(item.url, (img) => {
+    verified.enqueue({url: item.url, base64:img, when:item.time});
     done();
   });
 }, 5);
@@ -19,11 +19,11 @@ var prevLength = 0;
 
 const modules = {
   get: (req, res) => {
-    res.json(memStorage.toArray());
+    res.json(memStorage.toArray().reverse());
   },
   getVerified: (req, res) => {
     res.json(verified.toArray().sort((a, b) => {
-      return a.time > b.time;
+      return a.time < b.time;
     }));
   },
   pushData: (data) => {
@@ -34,7 +34,13 @@ const modules = {
     res.sendStatus(200);
   },
   verify: (req, res) => {
-    toScreenshot.delegate({ url :req.body.url, time: Date.now() });
+    toScreenshot.delegate({ url:req.body.url, time: Date.now() });
+    res.sendStatus(202);
+  },
+  verifyMany: (req, res) => {
+    req.body.urls.reverse().forEach(url => {
+      toScreenshot.delegate({ url: url, time: Date.now() });
+    });
     res.sendStatus(202);
   },
   delete: (req, res) => {
@@ -42,6 +48,7 @@ const modules = {
     fs.writeFile(storePath, '', () => {
       prevLength = 0;
     });
+    verified.clear();
     res.sendStatus(200);
   },
   deleteVerified: (req, res) => {
@@ -62,12 +69,14 @@ watchPath(storePath, (eventName, fileName) => {
     let packetObj = {};
     parseable.forEach((packet,index) => {
       if(packet.indexOf('-- -- -->') !== -1) {
-        packetObj.src = packet.slice(packet.indexOf('[') + 1, packet.indexOf(']'));
-        packetObj.dest = packet.slice(packet.lastIndexOf('[') + 1, packet.lastIndexOf(']'));
         packetObj.url = parseable[index + 1];
         packetObj.response = parseable[index + 2];
-        packetObj.when = Date.now();
-        modules.pushData(packetObj);
+        if(packetObj.url !== '200 OK' && packetObj.url !== '200%20OK' && packetObj.url !== ' 200%20OK' && packetObj.response !== '' && packetObj.response !== undefined) {
+          packetObj.src = packet.slice(packet.indexOf('[') + 1, packet.indexOf(']'));
+          packetObj.dest = packet.slice(packet.lastIndexOf('[') + 1, packet.lastIndexOf(']'));
+          packetObj.when = Date.now();
+          modules.pushData(packetObj);
+        }
         packetObj = {};
       }
     });

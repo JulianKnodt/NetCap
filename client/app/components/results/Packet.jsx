@@ -2,10 +2,21 @@ import React from 'react';
 import * as parse from 'url';
 import * as noescape from 'unescape';
 
-console.log(noescape);
-
+const sendData = (url) => {
+  fetch('/api/verified', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({url: url})
+  });
+};
 const textStyle = () => {fontSize: '.8vw'};
-const verify = () => {console.log('cool')};
+const verify = (url) => {
+  url = url.slice(url.indexOf(' ') + 1);
+  return url;
+};
 
 const Packet = (props) => {
   let data = parse.parse(props.url.slice(props.url.indexOf(' ')));
@@ -43,7 +54,7 @@ const Packet = (props) => {
       </div>*/}
       <div className="panel-footer">
         <h4>{props.src}</h4>
-        <p><a className="btn btn-primary" role="button" onClick={verify}>Verify</a> <a className="btn btn-default" role="button">Delete</a></p>
+        <p><a className="btn btn-primary" role="button" onClick={() => {sendData(verify(props.url))}}>Screenshot</a>{/*<a className="btn btn-default" role="button">Delete</a>*/}</p>
       </div>
     </div>
   </div>

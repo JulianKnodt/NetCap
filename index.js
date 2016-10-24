@@ -3,7 +3,7 @@ const server = require('./server/app.js');
 const sudo = require('sudo-prompt');
 const path = require('path');
 var options = {
-  name: 'Safety Net',
+  name: 'NetCap',
   icns: path.resolve(__dirname +'/icons/14589-200.png'), // (optional)
 };
 

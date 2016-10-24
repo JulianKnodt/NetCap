@@ -11,10 +11,14 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use('/api', router);
 app.use(express.static(path.resolve(__dirname + '/../client')));
+app.use('/verified', express.static(path.resolve(__dirname + '/../client')));
+app.use('/about', express.static(path.resolve(__dirname + '/../client')));
 let port = process.env.PORT || 5451;
 
 const server = app.listen(port, ()=> {
-  console.log('listening on port', port);
+  if (!process.env.TESTING) {
+    console.log('listening on port', port);
+  }
 });
 
 module.exports = {

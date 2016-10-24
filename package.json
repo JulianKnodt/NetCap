@@ -4,7 +4,7 @@
   "description": "Packet capturing service",
   "main": "index.js",
   "scripts": {
-    "test": "mocha */spec.js",
+    "test": "mocha",
     "start": "node server/app.js",
     "dev": "nodemon server/app.js",
     "stop": "",

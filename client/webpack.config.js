@@ -7,11 +7,11 @@ const BUILD_DIR = path.resolve(__dirname, 'build');
 const REDIRECT = process.env.REDIRECT ? 'http://localhost:9009' : 'http://52.52.22.4';
 
 const config = {
-  entry: './app/routes.jsx',
+  entry: './app/index.jsx',
   output: {
     path: BUILD_DIR,
     publicPath: '/public/',
-    filename: 'bundle.js'
+    filename: 'compiled.js'
   },
   devServer: {
     proxy: {
