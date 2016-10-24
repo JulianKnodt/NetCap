@@ -73,10 +73,9 @@ License
 ----
 
 MIT
+Created by Julian Knodt, julianknodt@gmail.com
 
    [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [@thomasfuchs]: <http://twitter.com/thomasfuchs>
    [node.js]: <http://nodejs.org>
    [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
    [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
