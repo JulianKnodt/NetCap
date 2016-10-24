@@ -17,8 +17,6 @@ NetCap is a lightweight electron app designed for background use for surfing the
 
 ### Tech
 
-Dillinger uses a number of open source projects to work properly:
-
 * [ReactJS](https://facebook.github.io/react/) - Facebook's Front-end Framework
 * [Twitter Bootstrap] - Twitter's Responsive CSS Library
 * [node.js] - evented I/O for the backend
